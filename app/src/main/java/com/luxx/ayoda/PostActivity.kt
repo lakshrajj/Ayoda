@@ -1,5 +1,6 @@
 package com.luxx.ayoda
 
+import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -32,6 +33,11 @@ class PostActivity : AppCompatActivity() {
                 }
             }
         )
+
+        imgResetBtn.setOnClickListener {
+            val intent = Intent(this, PostActivity::class.java)
+            startActivity(intent)
+        }
 
         uldImg.setOnClickListener {
             galleryImage.launch("image/*")
