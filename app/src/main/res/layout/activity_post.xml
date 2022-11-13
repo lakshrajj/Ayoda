@@ -84,16 +84,15 @@
         android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:textAlignment="center"
-        android:hint="Description"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:background="@drawable/round_outline"
         android:layout_marginHorizontal="30dp"
-        app:layout_constraintHorizontal_bias="0.524"
+        android:background="@drawable/round_outline"
+        android:hint="Description"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/uldImg"
-        app:layout_constraintVertical_bias="0.238" />
+        app:layout_constraintVertical_bias="0.163" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
