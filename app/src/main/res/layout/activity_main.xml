@@ -1,21 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:id="@+id/drawer"
     android:layout_height="match_parent"
     android:background="@color/glight"
     tools:context=".MainActivity">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <androidx.appcompat.widget.AppCompatButton
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:id="@+id/sideMenuBtn"
+        android:layout_marginStart="16dp"
+        android:src="@drawable/menu_black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.15" />
+
+    <Button
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:id="@+id/postBtn"
         android:background="@drawable/round_button"
         android:textSize="150sp"
+        android:shadowColor="@color/black"
         android:elevation="25dp"
         android:textColor="@color/white"
-
         android:textAlignment="center"
         android:text="+"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -29,8 +44,22 @@
         android:layout_height="253dp"
         android:layout_marginTop="-80dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/in_logo_dark" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="@drawable/round_outline"
+        app:menu="@menu/menu_nav"
+        android:fitsSystemWindows="true"
+        tools:ignore="MissingConstraints" />
+
+</androidx.drawerlayout.widget.DrawerLayout>
