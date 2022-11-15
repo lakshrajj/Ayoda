@@ -3,7 +3,7 @@
     <style name="Theme.Ayoda" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/gdark</item>
-        <item name="colorPrimaryVariant">@color/gdark</item>
+        <item name="colorPrimaryVariant">@color/glight</item>
         <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>

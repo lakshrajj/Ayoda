@@ -32,6 +32,8 @@
                 android:id="@+id/nav_about"/>
             <item android:title="Help"
                 android:id="@+id/help"/>
+            <item android:title="Logout"
+                android:id="@+id/logout"/>
         </menu>
     </item>
 

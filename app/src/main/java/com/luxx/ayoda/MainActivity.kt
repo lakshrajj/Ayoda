@@ -5,10 +5,18 @@ import android.os.Bundle
 import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.ActionBarDrawerToggle
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+
+    lateinit var mGoogleSignInClient: GoogleSignInClient
     lateinit var toggle: ActionBarDrawerToggle
+    private lateinit var auth: FirebaseAuth
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -17,6 +25,12 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, PostActivity::class.java)
             startActivity(intent)
         }
+
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.default_web_client_id))
+            .requestEmail()
+            .build()
+        mGoogleSignInClient= GoogleSignIn.getClient(this,gso)
 
         toggle = ActionBarDrawerToggle(this,drawer,R.string.open,R.string.close)
         drawer.addDrawerListener(toggle)
@@ -36,6 +50,12 @@ class MainActivity : AppCompatActivity() {
             }else if(it.itemId==R.id.help){
                 val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/lakshrajj/Ayoda"))
                 startActivity(browserIntent)
+            }else if(it.itemId==R.id.logout){
+                mGoogleSignInClient.signOut().addOnCompleteListener {
+                    val intent= Intent(this, SignInActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                }
             }
 
             true}

@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "136289784105",
+    "firebase_url": "https://ayoda-app-default-rtdb.firebaseio.com",
     "project_id": "ayoda-app",
     "storage_bucket": "ayoda-app.appspot.com"
   },
@@ -13,6 +14,14 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "136289784105-dovka71jkobdbp1o2rsgd4lpr96739lp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.luxx.ayoda",
+            "certificate_hash": "3a0198b1a680031f4d567375dadff1b309f8588b"
+          }
+        },
         {
           "client_id": "136289784105-f7a1cfrnnt95ri9j1qsrggt403arlsqi.apps.googleusercontent.com",
           "client_type": 3
