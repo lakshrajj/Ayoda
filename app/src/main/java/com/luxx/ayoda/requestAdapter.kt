@@ -20,9 +20,7 @@ class requestAdapter(private val requestList:ArrayList<requestData>,
         val des: TextView = itemView.findViewById(R.id.requestDescription)
         val landmark: TextView = itemView.findViewById(R.id.requestLandmark)
         val location: TextView = itemView.findViewById(R.id.requestLocation)
-        val status: TextView ?= null
-
-
+        val status: TextView = itemView.findViewById(R.id.requestStatus)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): requestViewHolder {
@@ -36,6 +34,7 @@ class requestAdapter(private val requestList:ArrayList<requestData>,
         holder.des.text = request.des
         holder.landmark.text = request.landmark
         holder.location.text = request.location
+        holder.status.text = request.status
 
         holder.itemView.setOnClickListener{
             onItemClick?.invoke(request)

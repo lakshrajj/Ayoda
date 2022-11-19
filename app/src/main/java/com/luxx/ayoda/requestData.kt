@@ -9,7 +9,8 @@ data class requestData(
     val landmark: String ?= null,
     val location: String ?= null,
     val status: String ?= null,
-    val user: String ?= null
+    val user: String ?= null,
+    val id: Int ?= null
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString(),
@@ -17,7 +18,8 @@ data class requestData(
         parcel.readString(),
         parcel.readString(),
         parcel.readString(),
-        parcel.readString()
+        parcel.readString(),
+        parcel.readInt()
     ) {
     }
 
@@ -28,6 +30,9 @@ data class requestData(
         parcel.writeString(location)
         parcel.writeString(status)
         parcel.writeString(user)
+        if (id != null) {
+            parcel.writeInt(id)
+        }
     }
 
     override fun describeContents(): Int {

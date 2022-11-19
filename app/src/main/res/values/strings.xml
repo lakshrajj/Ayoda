@@ -2,4 +2,5 @@
     <string name="app_name">Ayoda</string>
     <string name="open">open</string>
     <string name="close">close</string>
+    <string name="sonmaps"><u>Show on Maps.</u></string>
 </resources>

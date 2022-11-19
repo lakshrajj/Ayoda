@@ -80,9 +80,12 @@ class PostActivity : AppCompatActivity() {
 
 
 
+
+
         imgResetBtn.setOnClickListener {
-            val intent = Intent(this, PostActivity::class.java)
-            startActivity(intent)
+            uldImg.setImageResource(R.drawable.upload_cloud)
+            desTV.setText("")
+            landTV.setText("")
         }
 
         uldImg.setOnClickListener {
@@ -181,7 +184,8 @@ class PostActivity : AppCompatActivity() {
         newPost?.child("user")?.setValue(auth.currentUser?.uid)
         newPost?.child("landmark")?.setValue(landTV.text.toString())
         newPost?.child("des")?.setValue(desTV.text.toString())
-        newPost?.child("status")?.setValue("close")
+        newPost?.child("status")?.setValue("Untreated")
+        newPost?.child("id")?.setValue(count)
         newPost?.child("location")?.setValue(lati)
         databaseReference!!.child("count").setValue(count.plus(1))
 

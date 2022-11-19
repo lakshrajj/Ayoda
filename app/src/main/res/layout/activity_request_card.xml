@@ -8,11 +8,101 @@
 
     <ImageView
         android:id="@+id/reqCardIv"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.026"
+        tools:srcCompat="@tools:sample/avatars" />
+
+
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/round_outline"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/reqCardIv"
+        app:layout_constraintVertical_bias="0.255"
+        tools:layout_editor_absoluteX="0dp">
+
+        <TableLayout
+            android:id="@+id/tview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:padding="5dp"
+            android:stretchColumns="2">
+
+            <TableRow>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:text="Landmark :" />
+
+                <TextView
+                    android:id="@+id/rCardLandmark"
+                    android:layout_width="250dp"
+                    android:layout_height="30dp"
+                    android:padding="5dp" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:text="Description :" />
+
+                <TextView
+                    android:id="@+id/rCardDescription"
+                    android:layout_width="250dp"
+                    android:layout_height="30dp"
+                    android:padding="5dp" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:text="Status :" />
+
+                <TextView
+                    android:id="@+id/rCardStatus"
+                    android:layout_width="250dp"
+                    android:layout_height="30dp"
+                    android:padding="5dp" />
+            </TableRow>
+
+            <TableRow android:gravity="center">
+
+                <TextView
+                    android:id="@+id/Location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sonmaps"
+                    android:textAlignment="center"
+                    android:textColor="#0000ff"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+            </TableRow>
+        </TableLayout>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/strTreatBtm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Start Treatment"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
+        app:layout_constraintTop_toBottomOf="@+id/Location" />
 </androidx.constraintlayout.widget.ConstraintLayout>
