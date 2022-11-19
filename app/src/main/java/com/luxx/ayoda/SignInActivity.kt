@@ -43,7 +43,7 @@ class SignInActivity : AppCompatActivity() {
 
         googleSignInClient = GoogleSignIn.getClient(this, gso)
 
-        signinBtn.setSize(SignInButton.SIZE_STANDARD);
+        signinBtn.setSize(SignInButton.SIZE_STANDARD)
         signinBtn.setOnClickListener {
             signInGoogle()
         }
