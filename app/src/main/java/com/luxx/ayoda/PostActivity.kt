@@ -1,5 +1,6 @@
 package com.luxx.ayoda
 
+import android.app.Dialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -11,6 +12,7 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
+import androidx.core.graphics.drawable.toDrawable
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.common.api.ResolvableApiException
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -33,9 +35,9 @@ class PostActivity : AppCompatActivity() {
     private var storageReference = Firebase.storage
     private lateinit var auth: FirebaseAuth
     var databaseReference: DatabaseReference? = null
+    var databaseReference2: DatabaseReference? = null
     var firebaseDatabase: FirebaseDatabase? =null
     var lati : String? = null
-    var long : String? = null
     var count: Int = 1
     var imageset = 2
 
@@ -49,7 +51,8 @@ class PostActivity : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
         firebaseDatabase = FirebaseDatabase.getInstance()
-        databaseReference = firebaseDatabase?.reference?.child("request")
+        databaseReference = firebaseDatabase?.reference
+        databaseReference2 = firebaseDatabase?.reference?.child("request")
         storageReference = FirebaseStorage.getInstance()
 
         databaseReference?.addValueEventListener(object: ValueEventListener {
@@ -109,9 +112,7 @@ class PostActivity : AppCompatActivity() {
 
         task.addOnSuccessListener {
             if(it!=null){
-                lati = it.latitude.toString()
-                long = it.longitude.toString()
-                Log.d("Log, Lat",lati+long)
+                lati = it.latitude.toString()+","+ it.longitude.toString()
             }
 
         }.addOnFailureListener setOnClickListener@{
@@ -164,21 +165,24 @@ class PostActivity : AppCompatActivity() {
     }
 
     private fun uploadData() {
+        val dialog = Dialog(this)
+        dialog.setContentView(R.layout.dialog_loading)
+        dialog.show()
         locationPerms()
 
-        if (long.isNullOrBlank()){
+        if (lati.isNullOrBlank()){
             Toast.makeText(this, "Please Turn On GPS and Try Again", Toast.LENGTH_LONG).show()
             return
         }
 
 
 
-        val newPost = databaseReference?.child(count.toString())
+        val newPost = databaseReference2?.child(count.toString())
         newPost?.child("user")?.setValue(auth.currentUser?.uid)
         newPost?.child("landmark")?.setValue(landTV.text.toString())
         newPost?.child("des")?.setValue(desTV.text.toString())
-        newPost?.child("location")?.child("long")?.setValue(long)
-        newPost?.child("location")?.child("lati")?.setValue(lati)
+        newPost?.child("status")?.setValue("close")
+        newPost?.child("location")?.setValue(lati)
         databaseReference!!.child("count").setValue(count.plus(1))
 
 
@@ -187,15 +191,17 @@ class PostActivity : AppCompatActivity() {
             .addOnSuccessListener { task ->
                 task.metadata!!.reference!!.downloadUrl
                     .addOnSuccessListener {
-                        val imageMap = mapOf(
-                            "url" to it.toString()
-                        )
-                        newPost?.child("imageUri")?.setValue(imageMap)?.addOnSuccessListener {
+                        newPost?.child("imageUrl")?.setValue(it.toString())
+                            ?.addOnSuccessListener {
+                                dialog.dismiss()
+                                uldImg.setImageResource(R.drawable.upload_cloud)
+                                desTV.setText("")
+                                landTV.setText("")
                             Toast.makeText(this, "Uploaded", Toast.LENGTH_LONG).show()
                         }
                             ?.addOnFailureListener {
                                 Toast.makeText(this, "Failed", Toast.LENGTH_LONG).show()
-                            }
+                        }
                     }
             }
     }

@@ -6,25 +6,13 @@
     <item android:title="My Info">
         <menu>
             <item
-                android:id="@+id/nav_backup"
+                android:id="@+id/nav_profile"
                 android:title="Profile"
                 />
             <item
-                android:id="@+id/nav_Restore"
+                android:id="@+id/nav_request"
                 android:title="My Requests"/>
-            <item
-                android:id="@+id/nav_helpngo"
-                android:title="Help NGOs"/>
         </menu></item>
-
-    <item android:title="Settings">
-        <menu>
-            <item
-                android:id="@+id/nav_Settings"
-                android:title="Settings"
-                />
-        </menu>
-    </item>
 
     <item android:title="Others">
         <menu>

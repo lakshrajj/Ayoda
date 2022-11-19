@@ -4,14 +4,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.content.Intent
 import android.net.Uri
-import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.core.view.isVisible
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
-import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -25,9 +25,14 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        showReqBtn.isVisible = false
 
         postBtn.setOnClickListener {
             val intent = Intent(this, PostActivity::class.java)
+            startActivity(intent)
+        }
+        showReqBtn.setOnClickListener {
+            val intent = Intent(this, NgoView::class.java)
             startActivity(intent)
         }
 
@@ -38,9 +43,7 @@ class MainActivity : AppCompatActivity() {
         databaseReference?.addValueEventListener(object: ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 val ngo = snapshot.child("ngo").value.toString()
-                if (ngo == "yes"){
-                    ngomove()
-                }
+                showReqBtn.isVisible = ngo == "yes"
             }
             override fun onCancelled(error: DatabaseError) {
             }})
@@ -57,13 +60,12 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         nav.setNavigationItemSelectedListener {
-            if(it.itemId==R.id.nav_backup){
-
-            }else if(it.itemId==R.id.nav_Restore){
-
-            }else if (it.itemId==R.id.nav_Settings){
-
+            if(it.itemId==R.id.nav_profile){
+                Toast.makeText(this, "To be Add", Toast.LENGTH_LONG).show()
+            }else if(it.itemId==R.id.nav_request){
+                Toast.makeText(this, "To be Add", Toast.LENGTH_LONG).show()
             }else if(it.itemId==R.id.nav_about){
+                Toast.makeText(this, "To be Add", Toast.LENGTH_LONG).show()
 
                 drawer.close()
             }else if(it.itemId==R.id.help){
@@ -79,9 +81,4 @@ class MainActivity : AppCompatActivity() {
 
             true}
     }
-
-    private fun ngomove() {
-            val intent = Intent(this,NgoView::class.java)
-            startActivity(intent)
-}
 }
